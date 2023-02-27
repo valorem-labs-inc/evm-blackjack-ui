@@ -1,3 +1,8 @@
 import * as React from "react";
-export { NewTabLink } from "./NewTabLink";
-export { CounterButton } from "./CounterButton";
+import * as Flashy from "./card-decks/flashy";
+
+const CardDecks = {
+  Flashy,
+};
+
+export { CardDecks };
