@@ -38,6 +38,7 @@ module.exports = {
     "react/function-component-definition": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-use-before-define": [
       "error",
       { functions: false, classes: true, variables: true },
@@ -47,5 +48,14 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
   },
-  ignorePatterns: [".eslintrc.js", "next.config.js", "index.js"],
+  overrides: [
+    {
+      files: ["**/app/**/*.tsx", "**/pages/**/*.tsx"],
+      rules: {
+        "import/prefer-default-export": "error",
+        "import/no-default-export": "off",
+      },
+    },
+  ],
+  ignorePatterns: [".eslintrc.js", "*.config.js", "index.js"],
 };

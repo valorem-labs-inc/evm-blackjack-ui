@@ -12,6 +12,14 @@
     "module": "esnext",
     "noEmit": true,
     "resolveJsonModule": true,
-    "target": "es5"
-  }
+    "target": "es5",
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "moduleResolution": "node"
+  },
+  "include": [".", "src", "app", "pages", "next-env.d.ts"],
+  "exclude": ["node_modules", "**/*.js"]
 }
