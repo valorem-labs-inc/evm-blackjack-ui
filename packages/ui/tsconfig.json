@@ -3,6 +3,6 @@
     "lib": ["dom", "ES2015"]
   },
   "extends": "tsconfig/react-library.json",
-  "include": [".", "src/svg.d.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["dist", "build", "node_modules"]
 }
