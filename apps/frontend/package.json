@@ -1,0 +1,42 @@
+{
+  "name": "evm-casino-frontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf .next",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@rainbow-me/rainbowkit": "^0.11.0",
+    "@react-three/drei": "^9.56.28",
+    "@react-three/fiber": "^8.11.5",
+    "@svgr/webpack": "^6.5.1",
+    "ethers": "^5",
+    "framer-motion-3d": "^10.0.1",
+    "hammerjs": "^2.0.8",
+    "next": "latest",
+    "next-pwa": "^5.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.150.1",
+    "ui": "workspace:*",
+    "wagmi": "^0.11.7"
+  },
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.14.2",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "autoprefixer": "^10.4.13",
+    "dat.gui": "^0.7.9",
+    "eslint-config-custom": "workspace:*",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.9.5"
+  }
+}
