@@ -8,8 +8,10 @@ export const PlayerActions: FC<PropsWithChildren> = ({ children }) => {
   const { config, error } = usePrepareContractWrite({
     address: EVM_BLACKJACK_ADDRESS,
     abi: EVM_BLACKJACK_ABI,
+    // @ts-expect-error WIP
     functionName: "",
   });
+  // @ts-expect-error WIP
   const { write } = useContractWrite(config);
 
   return (
