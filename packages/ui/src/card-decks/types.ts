@@ -1,3 +1,122 @@
-import { FunctionComponent, SVGProps } from "react";
+export type Card =
+  | "1B"
+  | "2S"
+  | "4H"
+  | "6D"
+  | "8C"
+  | "9S"
+  | "JD"
+  | "QC"
+  | "TS"
+  | "1J"
+  | "3C"
+  | "4S"
+  | "6H"
+  | "8D"
+  | "AC"
+  | "JH"
+  | "QD"
+  | "2B"
+  | "3D"
+  | "5C"
+  | "6S"
+  | "8H"
+  | "AD"
+  | "JS"
+  | "QH"
+  | "2C"
+  | "3H"
+  | "5D"
+  | "7C"
+  | "8S"
+  | "AH"
+  | "KC"
+  | "QS"
+  | "2D"
+  | "3S"
+  | "5H"
+  | "7D"
+  | "9C"
+  | "AS"
+  | "KD"
+  | "TC"
+  | "2H"
+  | "4C"
+  | "5S"
+  | "7H"
+  | "9D"
+  | "KH"
+  | "TD"
+  | "2J"
+  | "4D"
+  | "6C"
+  | "7S"
+  | "9H"
+  | "JC"
+  | "KS"
+  | "TH";
 
-export type Deck = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
+// export type Deck = Record<
+//   Card,
+//   React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+//   // typeof import("*.svg").default
+// >;
+
+export interface Deck {
+  "1B": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "4H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "6D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "8C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "9S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  JD: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  QC: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  TS: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "1J": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "3C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "4S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "6H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "8D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  AC: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  JH: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  QD: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2B": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "3D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "5C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "6S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "8H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  AD: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  JS: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  QH: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "3H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "5D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "7C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "8S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  AH: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  KC: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  QS: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "3S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "5H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "7D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "9C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  AS: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  KD: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  TC: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "4C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "5S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "7H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "9D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  KH: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  TD: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "2J": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "4D": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "6C": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "7S": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  "9H": React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  JC: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  KS: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  TH: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+}

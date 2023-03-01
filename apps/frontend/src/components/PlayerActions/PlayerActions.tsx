@@ -3,7 +3,8 @@ import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import { EVM_BLACKJACK_ABI } from "../../lib/abis/EVMBlackjack";
 import { EVM_BLACKJACK_ADDRESS } from "../../lib/constants";
 
-export const PlayerActions: FC<PropsWithChildren> = ({ children }) => {
+// export const PlayerActions: FC<PropsWithChildren> = ({ children }) => {
+export const PlayerActions = () => {
   const [selectedAction, setSelectedAction] = useState("hit");
   const { config, error } = usePrepareContractWrite({
     address: EVM_BLACKJACK_ADDRESS,

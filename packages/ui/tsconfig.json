@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "ES2015"]
+    "lib": ["dom", "ES2015", "ESNext"],
+    "outDir": "./dist/"
   },
   "extends": "tsconfig/react-library.json",
   "include": ["src/**/*.ts"],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", ".turbo", "node_modules"]
 }

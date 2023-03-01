@@ -1,5 +1,5 @@
 import { Flashy } from "./flashy";
 
-export const CardDecks = {
-  Flashy,
-};
+const CardDecks = { Flashy };
+
+export { CardDecks };

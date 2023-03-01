@@ -3,10 +3,14 @@
   "display": "React Library",
   "extends": "./base.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["ES2015"],
+    "sourceMap": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
     "target": "es6",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "jsx": "react",
+    "noImplicitAny": true,
     "noEmit": false
   }
 }
