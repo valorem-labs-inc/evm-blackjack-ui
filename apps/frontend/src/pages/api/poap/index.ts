@@ -6,5 +6,5 @@ const links: string[] = JSON.parse(process.env.POAPLINKS!) as string[];
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { query } = req;
   console.log("redirecting tester to POAP Link");
-  res.status(200).redirect(links[Number(query.studyId) % 149]);
+  res.status(200).redirect(links[Number(query.studyId ?? Date.now()) % 149]);
 }
