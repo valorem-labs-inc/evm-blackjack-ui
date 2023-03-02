@@ -2,8 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const links: string[] = JSON.parse(process.env.POAPLINKS!) as string[];
 
+// eslint-disable-next-line import/no-default-export
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query;
+  const { query } = req;
   console.log("redirecting tester to POAP Link");
-  res.status(200).redirect(links[Number(id) % 149]);
+  res.status(200).redirect(links[Number(query.studyId) % 149]);
 }
