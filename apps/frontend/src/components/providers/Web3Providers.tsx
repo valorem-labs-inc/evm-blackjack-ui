@@ -5,13 +5,13 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { polygonMumbai, polygon, mainnet, sepolia } from "wagmi/chains";
+import { polygonMumbai, sepolia } from "wagmi/chains";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 // import { alchemyProvider } from "wagmi/providers/alchemy";
 
 const { chains, provider } = configureChains(
-  [sepolia],
+  [sepolia, polygonMumbai],
   [/* alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), */ publicProvider()]
 );
 

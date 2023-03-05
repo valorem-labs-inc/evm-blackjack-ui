@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ethers } from "ethers";
-import { useAccount, useContractRead } from "wagmi";
+import { useAccount, useContractRead, useNetwork } from "wagmi";
 import { CHIP_ABI } from "../lib/abis/ABIs";
-import { CHIP_ADDR } from "../lib/constants";
+import { ADDRESSES_BY_NETWORK } from "../lib/constants";
 
 export const Wallet = () => {
   const { address } = useAccount();
+  const { chain } = useNetwork();
   const { data } = useContractRead({
     abi: CHIP_ABI,
-    address: CHIP_ADDR,
+    address: ADDRESSES_BY_NETWORK?.[chain?.id]?.CHIP,
     functionName: "balanceOf",
     args: [
       address ?? (ethers.BigNumber.from(0).toHexString() as `0x${string}`),

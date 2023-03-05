@@ -1,3 +1,4 @@
+import { ClaimChip } from "../components/ClaimChip";
 import { Navbar } from "../components/Navbar";
 import { Payouts } from "../components/Payouts";
 import { PlayerActions } from "../components/PlayerActions/PlayerActions";
@@ -8,6 +9,7 @@ const R3F = () => (
     <Navbar />
     <FullScene />;
     <Payouts />
+    <ClaimChip />
     <div className="absolute right-[5%] bottom-[5%] z-20">
       <PlayerActions />
     </div>

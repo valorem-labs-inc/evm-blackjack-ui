@@ -4,51 +4,41 @@
 export const EVM_BLACKJACK_ABI = [
   {
     inputs: [
-      {
-        internalType: "contract Chip",
-        name: "_chip",
-        type: "address",
-      },
+      { internalType: "contract Chip", name: "_chip", type: "address" },
+      { internalType: "address", name: "_coordinator", type: "address" },
+      { internalType: "uint64", name: "_subscriptionId", type: "uint64" },
+      { internalType: "bytes32", name: "_keyHash", type: "bytes32" },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
   },
+  { inputs: [], name: "InvalidAction", type: "error" },
   {
-    inputs: [],
-    name: "InvalidAction",
-    type: "error",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "betSize",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "betSize", type: "uint256" }],
     name: "InvalidBetSize",
     type: "error",
   },
   {
-    inputs: [
-      {
-        internalType: "uint8",
-        name: "card",
-        type: "uint8",
-      },
-    ],
+    inputs: [{ internalType: "uint8", name: "card", type: "uint8" }],
     name: "InvalidCard",
     type: "error",
   },
   {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "requestId",
-        type: "bytes32",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
     name: "InvalidRandomnessRequest",
+    type: "error",
+  },
+  {
+    inputs: [
+      { internalType: "address", name: "have", type: "address" },
+      { internalType: "address", name: "want", type: "address" },
+    ],
+    name: "OnlyCoordinatorCanFulfill",
+    type: "error",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    name: "RequestDoesNotExist",
     type: "error",
   },
   {
@@ -68,9 +58,9 @@ export const EVM_BLACKJACK_ABI = [
       },
       {
         indexed: false,
-        internalType: "bytes32",
+        internalType: "uint256",
         name: "requestId",
-        type: "bytes32",
+        type: "uint256",
       },
     ],
     name: "BetPlaced",
@@ -98,12 +88,7 @@ export const EVM_BLACKJACK_ABI = [
         name: "player",
         type: "address",
       },
-      {
-        indexed: false,
-        internalType: "uint8",
-        name: "card",
-        type: "uint8",
-      },
+      { indexed: false, internalType: "uint8", name: "card", type: "uint8" },
     ],
     name: "DealerCardDealt",
     type: "event",
@@ -117,14 +102,27 @@ export const EVM_BLACKJACK_ABI = [
         name: "player",
         type: "address",
       },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "take",
-        type: "bool",
-      },
+      { indexed: false, internalType: "bool", name: "take", type: "bool" },
     ],
     name: "InsuranceTaken",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "address", name: "from", type: "address" },
+      { indexed: true, internalType: "address", name: "to", type: "address" },
+    ],
+    name: "OwnershipTransferRequested",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      { indexed: true, internalType: "address", name: "from", type: "address" },
+      { indexed: true, internalType: "address", name: "to", type: "address" },
+    ],
+    name: "OwnershipTransferred",
     type: "event",
   },
   {
@@ -193,12 +191,7 @@ export const EVM_BLACKJACK_ABI = [
         name: "player",
         type: "address",
       },
-      {
-        indexed: false,
-        internalType: "uint8",
-        name: "card",
-        type: "uint8",
-      },
+      { indexed: false, internalType: "uint8", name: "card", type: "uint8" },
       {
         indexed: false,
         internalType: "uint8",
@@ -210,84 +203,76 @@ export const EVM_BLACKJACK_ABI = [
     type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
-        internalType: "uint8",
-        name: "card",
-        type: "uint8",
+        indexed: false,
+        internalType: "uint256",
+        name: "requestId",
+        type: "uint256",
       },
-    ],
-    name: "convertCardToValue",
-    outputs: [
       {
-        internalType: "uint8",
-        name: "",
-        type: "uint8",
+        indexed: false,
+        internalType: "uint256[]",
+        name: "randomWords",
+        type: "uint256[]",
       },
     ],
-    stateMutability: "pure",
-    type: "function",
+    name: "RequestFulfilled",
+    type: "event",
   },
   {
+    anonymous: false,
     inputs: [
       {
-        internalType: "uint8[]",
-        name: "playerCards",
-        type: "uint8[]",
+        indexed: false,
+        internalType: "uint256",
+        name: "requestId",
+        type: "uint256",
       },
       {
-        internalType: "uint8[]",
-        name: "dealerCards",
-        type: "uint8[]",
+        indexed: false,
+        internalType: "uint32",
+        name: "numWords",
+        type: "uint32",
       },
     ],
-    name: "determineHandOutcome",
-    outputs: [
-      {
-        internalType: "enum IEVMBlackjack.Outcome",
-        name: "outcome",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "playerTotal",
-        type: "uint8",
-      },
-      {
-        internalType: "uint8",
-        name: "dealerTotal",
-        type: "uint8",
-      },
-    ],
-    stateMutability: "pure",
-    type: "function",
+    name: "RequestSent",
+    type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "_requestId",
-        type: "bytes32",
-      },
-      {
-        internalType: "bytes32",
-        name: "_randomness",
-        type: "bytes32",
-      },
-    ],
-    name: "fulfillRandomness",
+    inputs: [],
+    name: "acceptOwnership",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
+    inputs: [{ internalType: "uint8", name: "card", type: "uint8" }],
+    name: "convertCardToValue",
+    outputs: [{ internalType: "uint8", name: "", type: "uint8" }],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint8[]", name: "cards", type: "uint8[]" }],
+    name: "determineHandScore",
+    outputs: [{ internalType: "uint8", name: "score", type: "uint8" }],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
     inputs: [
-      {
-        internalType: "address",
-        name: "_player",
-        type: "address",
-      },
+      { internalType: "uint256", name: "_requestId", type: "uint256" },
+      { internalType: "uint256[]", name: "_randomWords", type: "uint256[]" },
     ],
+    name: "fulfillRandomness",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_player", type: "address" }],
     name: "getGame",
     outputs: [
       {
@@ -297,48 +282,20 @@ export const EVM_BLACKJACK_ABI = [
             name: "state",
             type: "uint8",
           },
-          {
-            internalType: "uint16",
-            name: "shoeCount",
-            type: "uint16",
-          },
-          {
-            internalType: "uint8[]",
-            name: "dealerCards",
-            type: "uint8[]",
-          },
-          {
-            internalType: "uint256",
-            name: "insurance",
-            type: "uint256",
-          },
+          { internalType: "uint16", name: "shoeCount", type: "uint16" },
+          { internalType: "uint8[]", name: "dealerCards", type: "uint8[]" },
+          { internalType: "uint256", name: "insurance", type: "uint256" },
           {
             internalType: "enum IEVMBlackjack.Action",
             name: "lastAction",
             type: "uint8",
           },
-          {
-            internalType: "uint8",
-            name: "totalPlayerHands",
-            type: "uint8",
-          },
-          {
-            internalType: "uint8",
-            name: "activePlayerHand",
-            type: "uint8",
-          },
+          { internalType: "uint8", name: "totalPlayerHands", type: "uint8" },
+          { internalType: "uint8", name: "activePlayerHand", type: "uint8" },
           {
             components: [
-              {
-                internalType: "uint8[]",
-                name: "cards",
-                type: "uint8[]",
-              },
-              {
-                internalType: "uint256",
-                name: "betSize",
-                type: "uint256",
-              },
+              { internalType: "uint8[]", name: "cards", type: "uint8[]" },
+              { internalType: "uint256", name: "betSize", type: "uint256" },
             ],
             internalType: "struct IEVMBlackjack.Hand[]",
             name: "playerHands",
@@ -354,40 +311,47 @@ export const EVM_BLACKJACK_ABI = [
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_betSize",
-        type: "uint256",
-      },
-    ],
+    inputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
+    name: "getRequest",
+    outputs: [{ internalType: "bool", name: "pending", type: "bool" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "lastRequestId",
+    outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [{ internalType: "address", name: "", type: "address" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "uint256", name: "_betSize", type: "uint256" }],
     name: "placeBet",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "requestId",
-        type: "bytes32",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
     inputs: [
-      {
-        internalType: "address",
-        name: "_player",
-        type: "address",
-      },
+      { internalType: "uint256", name: "requestId", type: "uint256" },
+      { internalType: "uint256[]", name: "randomWords", type: "uint256[]" },
     ],
+    name: "rawFulfillRandomWords",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "_player", type: "address" }],
     name: "requestRandomness",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "requestId",
-        type: "bytes32",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -400,25 +364,20 @@ export const EVM_BLACKJACK_ABI = [
       },
     ],
     name: "takeAction",
-    outputs: [
-      {
-        internalType: "bytes32",
-        name: "requestId",
-        type: "bytes32",
-      },
-    ],
+    outputs: [{ internalType: "uint256", name: "requestId", type: "uint256" }],
     stateMutability: "nonpayable",
     type: "function",
   },
   {
-    inputs: [
-      {
-        internalType: "bool",
-        name: "_take",
-        type: "bool",
-      },
-    ],
+    inputs: [{ internalType: "bool", name: "_take", type: "bool" }],
     name: "takeInsurance",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [{ internalType: "address", name: "to", type: "address" }],
+    name: "transferOwnership",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

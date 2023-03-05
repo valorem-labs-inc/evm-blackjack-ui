@@ -18,15 +18,6 @@ import { EVM_BLACKJACK_ABI } from "../../lib/abis/ABIs";
 import { EVM_BLACKJACK_ADDR } from "../../lib/constants";
 import { cardChoices } from "../../lib/utils";
 
-// export const GAME_STATES_TEXT = {
-//   readyForBet: "READY_FOR_BET",
-//   waitingForRandomness: "WAITING_FOR_RANDOMNESS",
-//   readyForInsurance: "READY_FOR_INSURANCE",
-//   readyForPlayerAction: "READY_FOR_PLAYER_ACTION",
-//   dealerAction: "DEALER_ACTION",
-//   payouts: "PAYOUTS",
-// };
-
 export const GAME_STATES = {
   readyForBet: 0,
   waitingForRandomness: 1,
@@ -89,11 +80,9 @@ const gameStateReducer = (
     case GameStateActions.SET:
       return { ...state, ...action.payload };
     case GameStateActions.RESET:
-      console.log("Reset");
       return initialState;
 
     default:
-      console.log("Does Not Exist", { action });
       return { ...state };
   }
 };
@@ -118,23 +107,23 @@ export const GameStateProvider: FC<PropsWithChildren> = ({ children }) => {
     watch: true,
   });
 
-  // useEffect(() => {
-  //   if (chainGameState?.state) {
-  //     dispatch({
-  //       type: GameStateActions.SET,
-  //       payload: {
-  //         ...(chainGameState as unknown as Partial<ReactGameState>),
-  //         dealerCards: chainGameState.dealerCards.map(
-  //           (card) => cardChoices[card]
-  //         ),
-  //         playerHands: chainGameState.playerHands.map((hand) => {
-  //           const cds = hand.cards.map((card) => cardChoices[card]);
-  //           return { cards: [...cds], betSize: hand.betSize };
-  //         }),
-  //       },
-  //     });
-  //   }
-  // }, [chainGameState]);
+  useEffect(() => {
+    if (chainGameState?.state) {
+      dispatch({
+        type: GameStateActions.SET,
+        payload: {
+          ...(chainGameState as unknown as Partial<ReactGameState>),
+          dealerCards: chainGameState.dealerCards.map(
+            (card) => cardChoices[card]
+          ),
+          playerHands: chainGameState.playerHands.map((hand) => {
+            const cds = hand.cards.map((card) => cardChoices[card]);
+            return { cards: [...cds], betSize: hand.betSize };
+          }),
+        },
+      });
+    }
+  }, [chainGameState]);
 
   // const [reactGameState, setReactGameState] = useState();
 
@@ -232,112 +221,3 @@ export const GameStateProvider: FC<PropsWithChildren> = ({ children }) => {
     </GameStateContext.Provider>
   );
 };
-
-// interface UseGameStateProps {}
-// export const useGameState = ({  }: UseGameStateProps) => {
-// export const useGameState = () => {
-//   const { address, status } = useAccount();
-//   const { data: gameState } = useContractRead({
-//     abi: EVM_BLACKJACK_ABI,
-//     address: EVM_BLACKJACK_ADDR,
-//     functionName: "getGame",
-//     args: [
-//       address ?? (ethers.BigNumber.from(0).toHexString() as `0x${string}`),
-//     ],
-//     watch: true,
-//   });
-
-//   const [reactGameState, setReactGameState] = useState();
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "BetPlaced",
-//     listener(playerAddr, betSize) {
-//       if (playerAddr === address) {
-//         console.log(betSize);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "PlayerCardDealt",
-//     listener(playerAddr, card, handIndex) {
-//       if (playerAddr === address) {
-//         console.log(card, handIndex);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "DealerCardDealt",
-//     listener(playerAddr, card) {
-//       if (playerAddr === address) {
-//         console.log(card);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "InsuranceTaken",
-//     listener(playerAddr, taken) {
-//       if (playerAddr === address) {
-//         console.log(taken);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "PlayerActionTaken",
-//     listener(playerAddr, action) {
-//       if (playerAddr === address) {
-//         console.log(action);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "PlayerBust",
-//     listener(playerAddr) {
-//       if (playerAddr === address) {
-//         console.log(playerAddr);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "DealerBust",
-//     listener(playerAddr) {
-//       if (playerAddr === address) {
-//         console.log(playerAddr);
-//       }
-//     },
-//   });
-
-//   useContractEvent({
-//     address: EVM_BLACKJACK_ADDR,
-//     abi: EVM_BLACKJACK_ABI,
-//     eventName: "PayoutsHandled",
-//     listener(playerAddr, playerPayout, dealerPayout) {
-//       if (playerAddr === address) {
-//         console.log(playerPayout, dealerPayout);
-//       }
-//     },
-//   });
-
-//   return {
-//     gameState,
-//   };
-// };
