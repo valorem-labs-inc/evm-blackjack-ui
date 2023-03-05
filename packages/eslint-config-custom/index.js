@@ -43,6 +43,7 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true },
     ],
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-use-before-define": [
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
