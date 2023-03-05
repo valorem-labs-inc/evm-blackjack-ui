@@ -1,0 +1,372 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "contract Chip",
+        "name": "_chip",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidAction",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "betSize",
+        "type": "uint256"
+      }
+    ],
+    "name": "InvalidBetSize",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "requestId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "InvalidRandomnessRequest",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "betSize",
+        "type": "uint256"
+      }
+    ],
+    "name": "BetPlaced",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "DealerBust",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "card",
+        "type": "uint8"
+      }
+    ],
+    "name": "DealerCardDealt",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "take",
+        "type": "bool"
+      }
+    ],
+    "name": "InsuranceTaken",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "playerPayout",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "dealerPayout",
+        "type": "uint256"
+      }
+    ],
+    "name": "PayoutsHandled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum IEVMBlackjack.Action",
+        "name": "action",
+        "type": "uint8"
+      }
+    ],
+    "name": "PlayerActionTaken",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      }
+    ],
+    "name": "PlayerBust",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "player",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "card",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "handIndex",
+        "type": "uint8"
+      }
+    ],
+    "name": "PlayerCardDealt",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint8",
+        "name": "card",
+        "type": "uint8"
+      }
+    ],
+    "name": "convertCardToValue",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_requestId",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_randomness",
+        "type": "bytes32"
+      }
+    ],
+    "name": "fulfillRandomness",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_player",
+        "type": "address"
+      }
+    ],
+    "name": "getGame",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "enum IEVMBlackjack.State",
+            "name": "state",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint16",
+            "name": "shoeCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint8[]",
+            "name": "dealerCards",
+            "type": "uint8[]"
+          },
+          {
+            "internalType": "uint256",
+            "name": "insurance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "enum IEVMBlackjack.Action",
+            "name": "lastAction",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "totalPlayerHands",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint8",
+            "name": "activePlayerHand",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint8[]",
+                "name": "cards",
+                "type": "uint8[]"
+              },
+              {
+                "internalType": "uint256",
+                "name": "betSize",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IEVMBlackjack.Hand[]",
+            "name": "playerHands",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct IEVMBlackjack.Game",
+        "name": "game",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_betSize",
+        "type": "uint256"
+      }
+    ],
+    "name": "placeBet",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "requestId",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_player",
+        "type": "address"
+      }
+    ],
+    "name": "requestRandomness",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "requestId",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum IEVMBlackjack.Action",
+        "name": "action",
+        "type": "uint8"
+      }
+    ],
+    "name": "takeAction",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "requestId",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "_take",
+        "type": "bool"
+      }
+    ],
+    "name": "takeInsurance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

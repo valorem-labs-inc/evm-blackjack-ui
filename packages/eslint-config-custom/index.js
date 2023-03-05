@@ -56,6 +56,17 @@ module.exports = {
         "import/no-default-export": "off",
       },
     },
+    // {
+    //   files: ["**/Scenes3D/**/*.*"],
+    //   rules: {
+    //     "@typescript-eslint/no-unsafe-assignment": "off",
+    //   },
+    // },
   ],
-  ignorePatterns: [".eslintrc.js", "*.config.js", "index.js"],
+  ignorePatterns: [
+    ".eslintrc.js",
+    "*.config.js",
+    "index.js",
+    "**/Scenes3D/**/*.*",
+  ],
 };

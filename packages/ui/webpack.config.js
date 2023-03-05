@@ -21,7 +21,15 @@ module.exports = {
         test: /\.svg$/i,
         issuer: /\.[jt]s?$/,
         resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-        use: [{ loader: "@svgr/webpack", options: { typescript: true } }],
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              typescript: true,
+              output: { path: path.resolve(__dirname, "dist/svgr") },
+            },
+          },
+        ],
       },
     ],
   },
@@ -35,6 +43,7 @@ module.exports = {
     library: "evmbjui",
     libraryTarget: "umd",
     globalObject: "this",
+    publicPath: "/",
   },
   mode: "development",
   optimization: {

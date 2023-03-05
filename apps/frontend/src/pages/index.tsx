@@ -7,20 +7,11 @@ const Club2 = CardDecks.Flashy["2C"];
 const Back1 = CardDecks.Flashy["1B"];
 const Back2 = CardDecks.Flashy["2B"];
 
-export default function Store() {
+export default function App() {
   return (
-    <div>
-      <Head>
-        <title>EVM Casino</title>
-      </Head>
-      <div className="flex flex-col w-screen h-screen">
-        <Navbar />
-        <Table2D>
-          <Club2 />
-          <Back1 />
-          <Back2 />
-        </Table2D>
-      </div>
-    </div>
+    <>
+      <Navbar />
+      <Table2D />
+    </>
   );
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "ES2015", "ESNext"],
-    "outDir": "./dist/"
+    "outDir": "./dist"
   },
   "extends": "tsconfig/react-library.json",
   "include": ["src/**/*.ts"],

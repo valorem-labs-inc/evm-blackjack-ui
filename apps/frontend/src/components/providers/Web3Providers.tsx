@@ -5,13 +5,13 @@ import {
   RainbowKitProvider,
   lightTheme,
 } from "@rainbow-me/rainbowkit";
-import { polygonMumbai, polygon, mainnet } from "wagmi/chains";
+import { polygonMumbai, polygon, mainnet, sepolia } from "wagmi/chains";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 // import { alchemyProvider } from "wagmi/providers/alchemy";
 
 const { chains, provider } = configureChains(
-  [polygonMumbai, polygon, mainnet],
+  [sepolia],
   [/* alchemyProvider({ apiKey: 'yourAlchemyApiKey' }), */ publicProvider()]
 );
 
@@ -37,6 +37,8 @@ export function Web3Providers({ children }: { children: React.ReactNode }) {
           borderRadius: "small",
         })}
         coolMode
+        showRecentTransactions
+        initialChain={sepolia}
       >
         {children}
       </RainbowKitProvider>

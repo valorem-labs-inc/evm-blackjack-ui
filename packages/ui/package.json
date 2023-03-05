@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "sideEffects": false,
-  "main": "./dist/ui.main.bundle.js",
+  "main": "./dist/index.js",
   "module": "./dist/ui.main.bundle.js",
   "types": "./dist/index.d.ts",
   "files": [
@@ -12,12 +12,12 @@
   ],
   "scripts": {
     "build:bkup": "pnpm clean && webpack && tsup src/index.ts --format esm,cjs --dts --external react",
-    "build": "pnpm clean && tsc ./src/*.ts --outDir ./dist/ && pnpm svgr && webpack",
+    "build": "pnpm clean && tsc ./src/*.ts --outDir ./dist/ && webpack && pnpm svgr",
     "clean": "rm -rf dist",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
     "lint": "eslint \"src/**/*.ts*\"",
     "test": "jest",
-    "svgr": "npx @svgr/cli --out-dir ./dist/card-decks/flashy -- ./src/card-decks/flashy"
+    "svgr": "npx @svgr/cli --out-dir ./dist/svgr/flashy -- ./src/card-decks/flashy"
   },
   "jest": {
     "preset": "jest-presets/jest/node"
