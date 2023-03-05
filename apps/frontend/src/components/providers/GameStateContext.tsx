@@ -4,6 +4,7 @@ import {
   Dispatch,
   FC,
   PropsWithChildren,
+  useEffect,
   useMemo,
   useReducer,
   useState,
@@ -12,6 +13,7 @@ import { Card } from "ui/dist/card-decks/types";
 import { useAccount, useContractEvent, useContractRead } from "wagmi";
 import { EVM_BLACKJACK_ABI } from "../../lib/abis/ABIs";
 import { EVM_BLACKJACK_ADDR } from "../../lib/constants";
+import { cardChoices } from "../../lib/utils";
 
 // export const GAME_STATES_TEXT = {
 //   readyForBet: "READY_FOR_BET",
@@ -70,7 +72,10 @@ export enum GameStateActions {
 
 export interface GameStateCtx {
   gameState: ReactGameState;
-  dispatch: Dispatch<{ type: GameStateActions; payload: ReactGameState }>;
+  dispatch: Dispatch<{
+    type: GameStateActions;
+    payload: Partial<ReactGameState>;
+  }>;
 }
 
 const gameStateReducer = (
@@ -79,7 +84,7 @@ const gameStateReducer = (
 ) => {
   switch (action.type) {
     case GameStateActions.SET:
-      return action.payload;
+      return { ...state, ...action.payload };
     case GameStateActions.RESET:
       console.log("Reset");
       return initialState;
@@ -109,6 +114,24 @@ export const GameStateProvider: FC<PropsWithChildren> = ({ children }) => {
     ],
     watch: true,
   });
+
+  // useEffect(() => {
+  //   if (chainGameState?.state) {
+  //     dispatch({
+  //       type: GameStateActions.SET,
+  //       payload: {
+  //         ...(chainGameState as unknown as Partial<ReactGameState>),
+  //         dealerCards: chainGameState.dealerCards.map(
+  //           (card) => cardChoices[card]
+  //         ),
+  //         playerHands: chainGameState.playerHands.map((hand) => {
+  //           const cds = hand.cards.map((card) => cardChoices[card]);
+  //           return { cards: [...cds], betSize: hand.betSize };
+  //         }),
+  //       },
+  //     });
+  //   }
+  // }, [chainGameState]);
 
   // const [reactGameState, setReactGameState] = useState();
 

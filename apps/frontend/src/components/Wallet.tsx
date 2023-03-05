@@ -18,7 +18,7 @@ export const Wallet = () => {
 
   return (
     <div className="flex items-center">
-      <p className="px-4 text-blue-900">
+      <p className="px-4 text-black">
         {`${ethers.utils.formatEther(data ?? ethers.BigNumber.from(0))}`} $CHIP
       </p>
       <ConnectButton showBalance={false} />

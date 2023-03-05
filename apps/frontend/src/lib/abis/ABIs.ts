@@ -32,6 +32,17 @@ export const EVM_BLACKJACK_ABI = [
   {
     inputs: [
       {
+        internalType: "uint8",
+        name: "card",
+        type: "uint8",
+      },
+    ],
+    name: "InvalidCard",
+    type: "error",
+  },
+  {
+    inputs: [
+      {
         internalType: "bytes32",
         name: "requestId",
         type: "bytes32",
@@ -54,6 +65,12 @@ export const EVM_BLACKJACK_ABI = [
         internalType: "uint256",
         name: "betSize",
         type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bytes32",
+        name: "requestId",
+        type: "bytes32",
       },
     ],
     name: "BetPlaced",
@@ -205,6 +222,40 @@ export const EVM_BLACKJACK_ABI = [
       {
         internalType: "uint8",
         name: "",
+        type: "uint8",
+      },
+    ],
+    stateMutability: "pure",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint8[]",
+        name: "playerCards",
+        type: "uint8[]",
+      },
+      {
+        internalType: "uint8[]",
+        name: "dealerCards",
+        type: "uint8[]",
+      },
+    ],
+    name: "determineHandOutcome",
+    outputs: [
+      {
+        internalType: "enum IEVMBlackjack.Outcome",
+        name: "outcome",
+        type: "uint8",
+      },
+      {
+        internalType: "uint8",
+        name: "playerTotal",
+        type: "uint8",
+      },
+      {
+        internalType: "uint8",
+        name: "dealerTotal",
         type: "uint8",
       },
     ],

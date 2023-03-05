@@ -11,7 +11,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <Web3Providers>
       <GameStateProvider>
         <Head>
-          <title>EVM Casino</title>
+          <title>EVM Blackjack</title>
         </Head>
         <div className="overflow-hidden w-screen h-screen">
           <Component {...pageProps} />

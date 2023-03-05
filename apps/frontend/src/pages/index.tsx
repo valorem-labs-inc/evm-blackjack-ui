@@ -1,17 +1,19 @@
-import Head from "next/head";
-// import { CardDecks } from "ui";
 import { Navbar } from "../components/Navbar";
-import { Table2D } from "../components/Table2D";
+import { Payouts } from "../components/Payouts";
+import { PlayerActions } from "../components/PlayerActions/PlayerActions";
+import { FullScene } from "../components/Scenes3D/FullScene";
 
-// const Club2 = CardDecks.Flashy["2C"];
-// const Back1 = CardDecks.Flashy["1B"];
-// const Back2 = CardDecks.Flashy["2B"];
-
-export default function App() {
+const R3F = () => {
   return (
     <>
       <Navbar />
-      <Table2D />
+      <FullScene />;
+      <Payouts />
+      <div className="absolute right-[5%] bottom-[5%] z-20">
+        <PlayerActions />
+      </div>
     </>
   );
-}
+};
+
+export default R3F;
